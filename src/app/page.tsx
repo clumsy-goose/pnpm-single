@@ -1,6 +1,17 @@
+'use client';
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const localEnv = process.env;
+  // console.log("🚀 ~ localEnv:", localEnv);
+  // console.log("type of", typeof localEnv);
+
+  const [env, setEnv] = useState<Record<string, string>>(process.env as Record<string, string>);
+  // console.log('env', env);
+
+
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -32,6 +43,17 @@ export default function Home() {
               Learning
             </a>{" "}
             center.
+          </p>
+        </div>
+        <div>
+          <p className="text-sm">
+            {Object.keys(env).length > 0 ? (
+              <pre className="whitespace-pre-wrap break-words">
+                {JSON.stringify(env, null, 2)}
+              </pre>
+            ) : (
+              'No NEXT_PUBLIC_* environment variables found'
+            )}
           </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">

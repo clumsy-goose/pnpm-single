@@ -1,0 +1,3 @@
+{
+    "InstallCommand": "env && pnpm install"
+}
